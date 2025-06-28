@@ -16,9 +16,4 @@ public class Afitsant {
     private Integer age;
     private List<Foods> foodsList;
 
-    public String toString(){
-        return "Name: " + name +
-                "\n{Foods = " + foodsList +
-                "\n}";
-    }
 }

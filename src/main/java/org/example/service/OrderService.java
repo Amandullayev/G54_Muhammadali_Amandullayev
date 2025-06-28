@@ -3,17 +3,19 @@ package org.example.service;
 import org.example.entities.Afitsant;
 import org.example.entities.Foods;
 
+import java.util.List;
+
 import static org.example.db.DB.*;
 import static org.example.utill.Utils.intScan;
 import static org.example.utill.Utils.strScan;
 
 public class OrderService {
     public static void service(){
-        if (foods == null){
+        if (foods.isEmpty()) {
             System.out.println("Sizda hali oziq ovqat mavjud emas!!");
             return;
         }
-        if (afitsantsList == null){
+        if (afitsantsList.isEmpty()){
             System.out.println("Sizda hali afitsand ham mavjud emas!!");
             return;
         }
@@ -80,13 +82,11 @@ public class OrderService {
     public static void order(String foodId, Integer quantity, String afitsantId){
         Foods food = getFoods(foodId);
         Double foodsFullPrice = getFoodsFullPrice(foodId, quantity);
-        food.setPrice(foodsFullPrice);
 
-        for (Afitsant afitsant : afitsantsList) {
-            if (afitsant.getId().equals(afitsantId)){
-                afitsant.getFoodsList().add(food);
-            }
-        }
+        Foods orderedFood = new Foods(food.getId(), food.getName(), food.getPrice(), foodsFullPrice);
+
+        Afitsant afitsant = getAfitsant(afitsantId);
+        afitsant.getFoodsList().add(orderedFood);
     }
 
 

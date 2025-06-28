@@ -59,7 +59,7 @@ public class AdminService {
                 creatAfitsant();
             }
         }
-        Afitsant afitsant = new Afitsant(UUID.randomUUID().toString(),afitsantName,aftsantRaqami, afitsantAge, null);
+        Afitsant afitsant = new Afitsant(UUID.randomUUID().toString(), afitsantName, aftsantRaqami, afitsantAge, new ArrayList<>());
         afitsantsList.add(afitsant);
 
         System.out.println("Afitsant " + afitsant.getName() + " has been created\n");
